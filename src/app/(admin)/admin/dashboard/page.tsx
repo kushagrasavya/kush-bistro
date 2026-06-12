@@ -273,7 +273,9 @@ export default function AdminDashboard() {
 
   const handleInventoryToggle = (itemId: string, current: boolean) => {
     setInventory(prev => prev.map(i => i.id === itemId ? { ...i, isAvailable: !current } : i));
-    startTransition(async () => await toggleMenuItemAvailability(itemId, current));
+    startTransition(async () => { 
+  await toggleMenuItemAvailability(itemId, current); 
+});
   };
 
   const activeTablesCount = Array.from(new Set(orders.filter(o => o.payment_status === 'pending').map(o => o.table_number))).length;

@@ -22,6 +22,7 @@ export interface DbOrder {
   payment_status: PaymentStatus;
   payment_id: string | null;
   created_at: string; // ISO string from Supabase
+  updated_at?: string | null;
 }
 
 export interface DbMenuItem {

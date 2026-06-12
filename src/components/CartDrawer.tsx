@@ -47,7 +47,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           total += order.total_amount;
           if (order.payment_id) hasSubmittedUtr = true; // Check if UTR is already in database
           if (Array.isArray(order.items)) {
-            const itemsWithStatus = order.items.map(item => ({ 
+            const itemsWithStatus = order.items.map((item: any) => ({
               ...item, orderStatus: order.status, name: item.name || MOCK_MENU_MAP[item.menuItemId] || 'Menu Item'
             }));
             combinedItems = [...combinedItems, ...itemsWithStatus];

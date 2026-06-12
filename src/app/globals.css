@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF7EE; /* Cream White */
+  --foreground: #1A1A1A; /* Matte Black / Dark Cocoa */
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --border: #1A1A1A; /* Solid dark borders for neobrutalism */
+  --muted: #EAE5D8;  /* Slightly darker cream */
+  --muted-foreground: #5A5245;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1e1516; /* Dark Cocoa background */
+    --foreground: #FAF7EE; /* Cream White text */
+    --card: #2d1f21;
+    --card-foreground: #FAF7EE;
+    --border: #FAF7EE;
+    --muted: #3d2c2e;
+    --muted-foreground: #c2b5a3;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  /* Brand parameters mapped from CSS variables (Dynamic White-Labeling) */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-primary-foreground: var(--brand-primary-foreground);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-cocoa: var(--brand-cocoa);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-outfit), system-ui, sans-serif;
+  --font-display: var(--font-plus-jakarta), system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Gen-Z Neobrutalism Design Elements */
+.neo-card {
+  background-color: var(--card);
+  border: 2.5px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 4px 4px 0px 0px var(--border);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s;
+}
+
+.neo-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0px 0px var(--border);
+}
+
+.neo-btn {
+  border: 2px solid var(--border);
+  box-shadow: 3px 3px 0px 0px var(--border);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px var(--border);
+}
+
+.glass-nav {
+  background: rgba(var(--background), 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2.5px solid var(--border);
+}
+
+.glass-footer {
+  background: rgba(var(--background), 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 2.5px solid var(--border);
+}
+
+/* Hide scrollbar for category lists */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Flashing outline for attention grabbing (New Orders) */
+@keyframes attentionPulse {
+  0%, 100% {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 10px rgba(224, 122, 95, 0.4);
+  }
+  50% {
+    border-color: var(--brand-accent);
+    box-shadow: 0 0 20px rgba(243, 204, 143, 0.8);
+  }
+}
+
+.pulse-attention {
+  animation: attentionPulse 1.5s infinite;
+  border-width: 3px !important;
 }

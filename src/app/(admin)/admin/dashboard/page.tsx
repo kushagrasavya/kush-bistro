@@ -68,7 +68,7 @@ function OrderCard({ order, isNew, onStatusChange, isMutating }: { order: DbOrde
           <div key={idx} className="flex justify-between items-start text-sm">
             <span className="text-zinc-300 font-bold leading-tight pr-2">
               <span className="text-[#E07A5F] mr-1.5">{item.quantity}x</span> 
-              {MOCK_MENU_MAP[item.menuItemId] || item.name || 'Item'}
+              {MOCK_MENU_MAP[item.menuItemId] || (item as any).name || 'Item'}
             </span>
           </div>
         ))}
@@ -124,7 +124,7 @@ function TablePaymentCard({ table, orders, onClear, isClearing }: { table: strin
           <div key={idx} className="flex justify-between items-center text-[#1A1A1A]">
             <span className="font-bold text-sm line-clamp-1 pr-2">
               <span className="text-[#E07A5F] mr-1.5">{item.quantity}x</span>
-              {MOCK_MENU_MAP[item.menuItemId] || item.name || 'Menu Item'}
+              {MOCK_MENU_MAP[item.menuItemId] || (item as any).name || 'Menu Item'}
             </span>
             <span className="font-black text-sm whitespace-nowrap">{formatPrice((item.priceAtOrder || 0) * item.quantity)}</span>
           </div>
@@ -174,7 +174,7 @@ function TableDraftCard({ table, latestTime, total, items }: { table: string; la
       <div className="flex flex-col gap-1 py-1">
         {items.map((item, idx) => (
           <div key={idx} className="flex justify-between items-center text-xs text-zinc-400">
-            <span>{item.quantity}x {MOCK_MENU_MAP[item.menuItemId] || item.name || 'Item'}</span>
+            <span>{item.quantity}x {MOCK_MENU_MAP[item.menuItemId] || (item as any).name || 'Item'}</span>
           </div>
         ))}
       </div>
